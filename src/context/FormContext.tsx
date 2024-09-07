@@ -26,8 +26,7 @@ type useFormDataContextType = {
   setFormData: React.Dispatch<React.SetStateAction<FormDataType>>;
   handleChange: (e: any) => void;
   handleLogout: (e: any) => void;
-  authenticate: boolean;
-  setAuthenticate: React.Dispatch<React.SetStateAction<boolean>>;
+
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
   user: UserType | null;
@@ -47,7 +46,6 @@ export const FormDataProvider = ({ children }: ChildrenType) => {
   const [formData, setFormData] = useState(formInitState);
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState<UserType | null>(null);
-  const [authenticate, setAuthenticate] = useState(false);
 
   const handleChange = (e: any) => {
     const name = e.target.name;
@@ -55,7 +53,7 @@ export const FormDataProvider = ({ children }: ChildrenType) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
   const getUserAxios = axios.create({
-    baseURL: 'https://api-drab-nu-98.vercel.app/api',
+    baseURL: 'http://127.0.0.1:8000',
     headers: {
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -67,9 +65,9 @@ export const FormDataProvider = ({ children }: ChildrenType) => {
     e.preventDefault();
     try {
       const res = await getUserAxios.post('/api/logout');
-      console.log(res.data);
       setUser(null);
       setToken(null);
+      return res.data;
     } catch (error: any) {
       console.log(error.response.data.errors);
     }
@@ -78,7 +76,6 @@ export const FormDataProvider = ({ children }: ChildrenType) => {
   const getUser = async () => {
     const response = await getUserAxios.get('/api/user');
     const data = response.data;
-
     setUser(data);
   };
 
@@ -105,8 +102,6 @@ export const FormDataProvider = ({ children }: ChildrenType) => {
         user,
         setUser,
         handleLogout,
-        authenticate,
-        setAuthenticate,
       }}
     >
       {children}

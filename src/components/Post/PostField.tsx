@@ -51,7 +51,6 @@ export const PostField = () => {
     } catch (error: any) {
       setErrors(error.response.data.errors);
     }
-    console.log(postData);
   };
   return (
     <Box marginTop={'2rem'} padding={'2rem'}>

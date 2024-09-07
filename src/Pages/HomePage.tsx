@@ -28,7 +28,6 @@ export const HomePage = () => {
       name: string;
     };
   };
-  console.log(posts);
   let content;
   if (isLoading)
     content = (

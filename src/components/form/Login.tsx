@@ -21,7 +21,7 @@ export const Login = ({ formData, selectChange }: propsType) => {
     password: [],
   });
   const toast = useToast();
-  const { setFormData, setToken, setAuthenticate } = UseFormContext();
+  const { setFormData, setToken } = UseFormContext();
   const navigate = useNavigate();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -30,12 +30,10 @@ export const Login = ({ formData, selectChange }: propsType) => {
         email: formData.email,
         password: formData.password,
       });
-      console.log(data);
       navigate('/');
       setFormData({ ...formData, email: '', password: '' });
       localStorage.setItem('token', data.token);
       setToken(data.token);
-      setAuthenticate(true);
       toast({
         duration: 1000,
         isClosable: true,

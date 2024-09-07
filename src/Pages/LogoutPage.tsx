@@ -5,7 +5,7 @@ import { Box, useToast } from '@chakra-ui/react';
 
 export const LogoutPage = () => {
   const navigate = useNavigate();
-  const { handleLogout, setAuthenticate, authenticate } = UseFormContext();
+  const { handleLogout, setAuthenticate } = UseFormContext();
   const toast = useToast();
   return (
     <form
@@ -13,8 +13,6 @@ export const LogoutPage = () => {
       onSubmit={e => {
         handleLogout(e), navigate('/');
         localStorage.removeItem('token');
-        setAuthenticate(false);
-        console.log(authenticate);
 
         toast({
           duration: 1000,
