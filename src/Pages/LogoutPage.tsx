@@ -5,7 +5,7 @@ import { Box, useToast } from '@chakra-ui/react';
 
 export const LogoutPage = () => {
   const navigate = useNavigate();
-  const { handleLogout, setAuthenticate } = UseFormContext();
+  const { handleLogout } = UseFormContext();
   const toast = useToast();
   return (
     <form
