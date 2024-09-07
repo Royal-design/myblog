@@ -1,4 +1,4 @@
-import { Box, List, ListItem, Text } from '@chakra-ui/react';
+import { Box, List, ListItem } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 import { UseFormContext } from '../../context/UseFormContext';
 import { LogoutPage } from '../../Pages/LogoutPage';
